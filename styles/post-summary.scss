@@ -1,0 +1,22 @@
+.post-summary {
+  margin: 30px 0 60px;
+}
+
+.post-summary--title {
+  margin: 0px;
+}
+
+.post-summary--title > a {
+  font-size: 1.5rem;
+  line-height: 2.25rem;
+  color: #e30000;
+  font-weight: 400;
+  @include link-no-underline();
+}
+
+.post-summary--date {
+  margin: 7px 0 30px;
+  font-size: 0.667rem;
+  line-height: 0.7337rem;
+  color: #999;
+}

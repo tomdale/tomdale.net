@@ -1,0 +1,97 @@
+.markdown-content {
+  h2, h3, h4, h5 {
+    margin: 60px 0 30px;
+    color: $primary-color;
+    font-weight: 400;
+
+    > a {
+      display: inline-block;
+      position: relative;
+      border: none;
+    }
+
+    > a:hover > .header-link:before {
+      content: '#';
+      position: absolute;
+      left: -30px;
+      color: #bbb;
+      font-size: 0.8em;
+    }
+  }
+
+  h2 {
+    font-size: 3.375rem;
+    line-height: 3.71rem;
+  }
+
+  h3 {
+    font-size: 2.25rem;
+    line-height: 2.475rem;
+  }
+
+  h4 {
+    font-size: 1.5rem;
+    line-height: 1.65rem;
+  }
+
+  p {
+    margin: 30px 0;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  li {
+    margin: 15px 0;
+  }
+
+  code {
+    font-size: 0.8rem;
+    font-family: Menlo, Courier, monospace;
+    color: #a626a4;
+  }
+
+  pre {
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 30px 0;
+    font-size: 0.6rem;
+    line-height: 0.9rem;
+  }
+
+  pre code {
+    color: black;
+    line-height: 1.2rem;
+  }
+
+  hr {
+    border: none;
+    width: 100%;
+  }
+
+  hr:before {
+    content: '***';
+    display: block;
+    letter-spacing: 0.5rem;
+    text-align: center;
+    font-style: italic;
+    color: #e30000;
+  }
+
+  blockquote {
+    color: #999;
+    font-weight: 100;
+    padding: 0.7rem 0 0.5rem 1rem;
+    margin-left: 0;
+    border-left: 2px solid #ccc;
+  }
+
+  blockquote > :first-child {
+    margin-top: 0;
+  }
+
+  blockquote > :last-child {
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "name": "tomdale.net",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "ts-node src/server.ts",
+    "build": "ts-node src/build.ts",
+    "build:production": "yarn run build && yarn run minify",
+    "minify": "cleancss -O2 dist/style.css -o dist/style.css",
+    "deploy": "yarn run build:production && netlify deploy"
+  },
+  "dependencies": {
+    "@types/express": "^4.0.35",
+    "@types/fs-extra": "^2.1.0",
+    "@types/glob": "^5.0.30",
+    "@types/handlebars": "^4.0.32",
+    "@types/highlight.js": "^9.1.9",
+    "@types/lodash": "^4.14.63",
+    "@types/marked": "0.0.28",
+    "@types/mkdirp": "^0.3.29",
+    "@types/node": "^7.0.13",
+    "@types/node-sass": "^3.10.32",
+    "clean-css-cli": "^4.0.12",
+    "express": "^4.15.2",
+    "front-matter": "^2.1.2",
+    "fs-extra": "^3.0.0",
+    "handlebars": "^4.0.6",
+    "highlight.js": "^9.11.0",
+    "lodash": "^4.17.4",
+    "marked": "^0.3.6",
+    "mkdirp": "^0.5.1",
+    "moment": "^2.18.1",
+    "netlify-cli": "^1.2.2",
+    "node-sass": "^4.5.2",
+    "route-recognizer": "0.2.1",
+    "ts-node": "^3.0.2",
+    "typescript": "^2.3.0"
+  }
+}

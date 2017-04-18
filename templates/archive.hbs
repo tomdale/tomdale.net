@@ -1,0 +1,12 @@
+{{> header}}
+  <main class="archive">
+  {{#each years as |year|}}
+    <div>
+      <h2 id="{{year.year}}" class="archive--year">{{year.year}}</h2>
+      {{#each year.posts as |post|}}
+        {{> post-summary post=post}}
+      {{/each}}
+    </div>
+  {{/each}}
+  </main>
+{{> footer}}

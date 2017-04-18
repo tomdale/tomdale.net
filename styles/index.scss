@@ -1,0 +1,121 @@
+/** Post List **/
+.tagline {
+  text-align: center;
+  color: #eaac8e;
+  font-style: italic;
+  margin: 30px 0 30px;
+}
+
+.list-section-title {
+  font-family: Futura, sans-serif;
+  color: #bbb;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.1rem;
+  margin: 60px 0 30px;
+  letter-spacing: 0.1rem;
+}
+
+.post-list {
+  margin: 0 auto;
+  max-width: 880px;
+}
+
+.post-list-latest {
+  position: relative;
+  overflow: visible;
+  z-index: 1;
+}
+
+.post-list-latest--post {
+  padding: 30px;
+}
+
+@media (min-width: 920px) {
+  .post-list-latest:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: -9px;
+    bottom: -9px;
+    background-image: linear-gradient(45deg, #e30000 12.5%, rgba(232, 227, 199, 0) 12.5%, rgba(232, 227, 199, 0) 37.5%, #e30000 37.5%, #e30000 62.5%, rgba(232, 227, 199, 0) 62.5%, rgba(232, 227, 199, 0) 87.5%, #e30000 87.5%);
+    background-size: 6px 6px;
+  }
+
+  .post-list-latest--post {
+    position: relative;
+    /* Bottom padding is 3px less to account for 3px border on Read link. */
+    padding: 30px 30px 27px 30px;
+    width: 100%;
+    border: 3px solid #e30000;
+    background-color: #fffffb;
+    box-shadow: 3px 3px 0 white;
+  }
+}
+
+.post-list-latest--label {
+  margin: 0 0 15px;
+  color: #999;
+  text-transform: uppercase;
+  font-size: 0.667rem;
+  line-height: 0.7337rem;
+  letter-spacing: 0.1rem;
+  font-family: Futura, sans-serif;
+}
+
+.post-list-latest--title {
+  margin: 0;
+}
+
+.post-list-latest--title > a {
+  color: #e30000;
+  font-size: 2.25rem;
+  line-height: 2.475rem;  
+  font-weight: 400;
+  @include link-no-underline();
+}
+
+.post-list-latest--date {
+  margin: 7px 7px 30px;
+  font-size: 0.667rem;
+  line-height: 0.7337rem;
+  color: #e30000;
+}
+
+.post-list-latest--excerpt {
+  color: #333;
+  margin: 15px 0 0;
+}
+
+.post-list-latest--excerpt > p {
+  margin: 15px 0;
+}
+
+.post-list-latest--read {
+  font-family: Futura, sans-serif;
+  font-size: 1rem;
+  /*text-transform: uppercase;*/
+  border-bottom: none;
+  margin-bottom: 12px;
+}
+
+/** Recents **/
+.recents {
+  max-width: $page-width + 30px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.more {
+  display: block;
+  font-family: Futura, sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.more > a {
+  @include link-no-underline();
+}

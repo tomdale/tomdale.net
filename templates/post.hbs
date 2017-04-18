@@ -1,0 +1,31 @@
+{{> header}}
+  <main class="post">
+    <div class="post--header">
+      <div>
+        <div class="post--date">{{moment post.date "MMMM Do, YYYY"}}</div>
+        <h1 class="post--title">{{post.title}}</h1>
+      </div>
+    </div>
+    <div class="post--content markdown-content">
+      {{{post.body}}}
+      <div class="signature">
+        &mdash;TD
+      </div>
+    </div>
+    <div class="up-next">
+      {{#if post.next}}
+        <div class="up-next--next">
+          Next
+        </div>
+        {{> post-summary post=post.next}}
+      {{/if}}
+
+      {{#if post.previous}}
+        <div class="up-next--previous">
+          Previous
+        </div>
+        {{> post-summary post=post.previous}}
+      {{/if}}
+    </div>
+  </main>
+{{> footer}}

@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/style.css" media="screen">
+    <title>{{#if title}}{{title}} - {{/if}}tomdale.net</title>
+    {{#if post}}
+      <meta property="og:title" content="{{title}}" />
+      <meta property="og:url" content="https://tomdale.net{{post.url}}" />
+      {{#if post.image}}
+        <meta property="og:image" content="https://tomdale.net{{post.url}}{{post.image}}" />
+      {{/if}}
+      {{#if post.excerptText}}
+        <meta property="og:description" content="{{post.excerptText}}" />
+      {{/if}}
+    {{/if}}
+  </head>
+  <body>
+      <header class="blog-header">
+        <a class="blog-header--logo" href="/"><img width="38" src="/logo.png"></a>
+        <nav class="nav-menu">
+          <div>
+            <a class="nav-menu--item" href="/">Home</a>
+          </div>
+          <div>
+            <a class="nav-menu--item" href="/archive/">Archive</a>
+          </div>
+          <div>
+            <a class="nav-menu--item" href="/about-me/">About Me</a>
+          </div>
+        </nav>
+      </header>

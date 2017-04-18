@@ -1,0 +1,25 @@
+{{> header}}
+      <main class="post-list">
+        <div class="tagline">Dispatches from the web &amp; elsewhere.</div>
+        <div class="post-list-latest">
+          <div class="post-list-latest--post">
+            <h2 class="post-list-latest--label">Latest</h2>
+            <h3 class="post-list-latest--title"><a href="{{latest.url}}">{{{latest.title}}}</a></h3>
+            <p class="post-list-latest--date">{{moment latest.date "MMMM Do, YYYY"}}</p>
+            <div class="post-list-latest--excerpt">{{{latest.excerpt}}}</div>
+            <a class="post-list-latest--read" href={{latest.url}}>➣ Read</a>
+          </div>
+        </div>
+        <section class="recents">
+          <h2 class="list-section-title">
+            Recent Posts
+          </h2>
+          {{#each recent as |post|}}
+            {{> post-summary post=post}}
+          {{/each}}
+          <div class="more">
+            <a href="/archive">More…</a>
+          </div>
+        </section>
+      </main>
+{{> footer}}

@@ -1,0 +1,29 @@
+.page {
+  @include content-block;
+}
+
+.page--title {
+  border: 3px solid $primary-color;
+  color: $primary-color;
+  padding: 30px 15px;
+  text-align: center;
+}
+
+@media (min-width: 920px) {
+  .page--title {
+    padding: 60px 30px;
+  }
+}
+
+.page--title > h1 {
+  font-size: 2.25rem;
+  line-height: 2.475rem;
+  margin: 0.8rem 0 0;
+}
+
+@media (min-width: 920px) {
+  .page--title > h1 {
+    font-size: 5.063rem;
+    line-height: 5.063rem;
+  }
+}
