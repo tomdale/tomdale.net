@@ -25,7 +25,8 @@ export default class Post extends Content {
 
   render(): string {
     return this.templates.post({
-      post: this
+      post: this,
+      title: this.title
     });
   }
 

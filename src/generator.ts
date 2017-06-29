@@ -76,12 +76,7 @@ export default class Generator {
 
   generatePost(slug: string) {
     let post = this.database.findPost(slug);
-    let title = post && post.title
-
-    return this.templates.post({
-      post,
-      title
-    });
+    return post ? post.render() : null;
   }
 
   generateMedia(params: { [key: string]: string }) {
@@ -112,12 +107,7 @@ export default class Generator {
 
   generatePage(slug: string) {
     let page = this.database.findPage(slug);
-    let title = page && page.title;
-
-    return this.templates.page({
-      page,
-      title
-    });
+    return page ? page.render() : null;
   }
 }
 

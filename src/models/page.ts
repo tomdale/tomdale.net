@@ -15,7 +15,8 @@ export default class Page extends Content {
 
   render(): string {
     return this.templates.page({
-      page: this
+      page: this,
+      title: this.title
     });
   }
 }
