@@ -2,7 +2,6 @@
 title: "Making the Jump: How Desktop-Era Frameworks Can Thrive on Mobile"
 date: 2017-04-30
 image: "thumbnail.png"
-hidden: true
 ---
 
 How do tools that grew up on the desktop, like Ember, Angular and React, make
@@ -198,16 +197,23 @@ people develop hacks and workarounds that defeat the simplicity.
 So how do we break out of this local maximum? How do we write one app that can
 scale up and down across different devices and performance characteristics?
 
+![Listing of all supported LLVM architectures](arch.png)
+
 I think we can learn from native developers, because they had to tackle a similar problem. Different CPU architectures have different instruction sets. If you write some assembly code for x86 and then want to run it on ARM, you have to start over from scratch.
 
 Learning assembly for all of these architectures is a big task. If this was how system software was written, there wouldn’t be much cross-platform code, and introducing new CPU architectures would be borderline impossible.
 
-We figured out a long time ago that a compiler can take a higher-level program and get it to run across all of these architectures. If a new architecture comes along, you just have to update the compiler, not rewrite every app in existence.
-
-![](clang.png)
+We figured out a long time ago that a compiler can take a higher-level program
+and get it to run across all of these architectures. If a new architecture comes
+along, you just have to update the compiler, not rewrite every app in existence.
 
 For example, you can compile C code using Clang and LLVM to WebAssembly, an
-architecture that definitely didn't exist in the 1970's.
+architecture that definitely didn't exist in the 1970's:
+
+```
+clang -emit-llvm --target=wasm32 -S sample.c
+llc sample.ll -march=wasm32
+```
 
 ![](target-specific-optimizations.png)
 
@@ -230,11 +236,11 @@ Most importantly, these tools can finally embrace complexity by decoupling it fr
 
 ***
 
-![](the-three.png)
+![React, Angular and Ember logos](the-three.png)
 
 Unfortunately I don’t have a lot of time with you today, but I wanted to highlight three things the teams behind React, Angular and Ember are working on that demonstrate that these frameworks are staying relevant on mobile by becoming compilers.
 
-![](prepack.png)
+![Prepack logo](prepack.png)
 
 Prepack is an open source tool from Facebook for optimizing JavaScript evaluation.
 
@@ -247,7 +253,7 @@ web apps.
 To understand why Prepack is cool, let’s take a step back and understand how a
 bundle optimizer like Rollup works.
 
-![](rollup-diagram.png)
+![Diagram of JavaScript files and their import dependencies](rollup-diagram.png)
 
 The way Rollup works is by starting with an entry point file and analyzing which
 files it imports. For each of those files, it looks at what that file imports,
@@ -350,7 +356,7 @@ But now instead of every user having to allocate a Moment.js object, parse a dat
 string, parse a formatting string, emit the requested string, and then
 concatenate it, we have a simple string literal.
 
-In fact, in this example, I can skip including and evaluating moment.js
+In fact, in this example, I can skip including and evaluating Moment.js
 altogether, including all of the extra data it needs to turn dates into
 locale-specific strings. That's a huge savings if all we're using Moment.js for is
 generating this message about when DinosaurJS starts.
@@ -358,6 +364,12 @@ generating this message about when DinosaurJS starts.
 This is a contrived example, but you can imagine how each of these small savings
 may start to really add up in larger apps, or libraries the size of Ember,
 Angular and React.
+
+Prepack is still in the "research" phase and optimizes for raw evaluation
+performance over file size, a strategy that can be self-defeating on the web.
+But this is an incredibly fresh approach to an old problem, and it makes the
+computer science part of my brain light up with glee. I'm very interested to see
+where these ideas take us.
 
 ![](preprepack.png)
 
