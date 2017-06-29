@@ -338,7 +338,7 @@ runs your app's JavaScript as part of your build. After it finishes running, it
 VM to evaluate.
 
 Understanding Prepack is a talk unto itself and I’m still digesting how it works
-internally myself. But let’s look at a few examples of what I mean by _reverse
+internally myself. But let’s look at an example of what I mean by _reverse
 engineering a simpler version_.
 
 Imagine we’re writing a library that prints the start date of the DinosaurJS
