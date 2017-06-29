@@ -1,7 +1,9 @@
 import marked = require('marked');
 import hljs = require('highlight.js');
 
-function highlight(code: string, lang: string) {
+function highlight(code: string, lang = '') {
+  if (!lang) { return code; }
+
   let filePath = '';
   if (lang.indexOf('.') > -1) {
     filePath = `<div class="filename">${lang}</div>`;
