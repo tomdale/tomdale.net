@@ -69,7 +69,7 @@ benchmarks included a test that would run `eval()` over and over again inside a
 tight loop. But there was an important detail: inside of
 the loop, the string of code passed was the same every time!
 
-Someone on one of the browser teams noticed this and added a small change their
+Someone on one of the browser teams noticed this and made a small change to their
 implementation. Instead of parsing the string from scratch every time, it would
 cache the compiled JavaScript on the string itself. If you passed the same
 string to `eval()` a second time, it would skip the parse step entirely and
