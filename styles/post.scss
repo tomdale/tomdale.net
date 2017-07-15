@@ -19,13 +19,15 @@
 }
 
 .post--title {
+  max-width: 100%;
   text-align: left;
   font-family: "HoeflerText-Regular", serif;
-  font-size: 3.375rem;
-  line-height: 3.71rem;
+  font-size: 2.25rem;
+  line-height: 2.475rem;
   color: white;
   font-weight: 400;
-  margin: 15px 0 15px;
+  margin: 15px;
+  word-wrap: break-word;
 }
 
 @media (min-width: 920px) {
