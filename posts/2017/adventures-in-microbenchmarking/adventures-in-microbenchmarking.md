@@ -123,7 +123,7 @@ Talk to anyone who has worked on performance long enough and they will give you
 a stern lecture about the dangers of relying on microbenchmarks to determine the
 relative performance of two implementations.
 
-While microbenchmarks might be a fine place to start your optimizaiton efforts,
+While microbenchmarks might be a fine place to start your optimization efforts,
 you should *always* validate the results against both your own understanding and
 benchmarks that test the application as a whole.
 
