@@ -15,7 +15,7 @@ export default class Database {
   constructor() {
     let posts = this.posts = glob.sync('posts/**/*.md')
       .map(Post.fromFile)
-      .sort((a, b) => b.attributes.date - a.attributes.date);
+      .sort((a, b) => (b.date as any) - (a.date as any));
 
     for (let i = 0; i < this.visiblePosts.length; i++) {
       posts[i].next = posts[i+1] || null;
