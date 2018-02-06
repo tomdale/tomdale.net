@@ -38,7 +38,7 @@ Prior to LinkedIn:
 3. Worked at Apple, where I worked on SproutCore and the web version of iCloud
    (née MobileMe).
 
-I live in Manhattan with my fiancée, [Zahra Jabini](https://www.zahraism.com).
+I live in Manhattan with my wife, [Zahra Jabini](https://www.zahraism.com).
 
 ![Tom and Zahra](tom-and-zeejab-lo.jpg)
 
