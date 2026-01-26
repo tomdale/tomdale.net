@@ -29,7 +29,7 @@
     "@types/marked": "^6.0.0",
     "@types/node": "^25.0.10",
     "clean-css-cli": "^5.6.0",
-    "express": "^4.21.0",
+    "express": "^5.2.1",
     "front-matter": "^4.0.0",
     "fs-extra": "^11.2.0",
     "handlebars": "^4.7.8",
