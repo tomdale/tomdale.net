@@ -1,8 +1,7 @@
-import fs = require('fs');
-import fse = require('fs-extra');
-import path = require('path');
-import mkdirp = require('mkdirp');
-import sass = require('node-sass');
+import * as fs from 'fs';
+import * as fse from 'fs-extra';
+import * as path from 'path';
+import * as sass from 'sass';
 
 import Generator from './generator';
 import Media from './models/media';
@@ -47,9 +46,9 @@ content.push({
 content.push({
   outputPath: 'style.css',
   render() {
-    return sass.renderSync({
-      file: path.join(__dirname, '../styles/style.scss')
-    }).css;
+    return sass.compile(
+      path.join(__dirname, '../styles/style.scss')
+    ).css;
   }
 })
 
@@ -66,7 +65,7 @@ for (let item of content) {
 
   outputPath = path.join('./dist/', outputPath);
 
-  mkdirp.sync(path.dirname(outputPath));
+  fs.mkdirSync(path.dirname(outputPath), { recursive: true });
 
   if (isRenderable(item)) {
     console.log(`Generating ${outputPath}`);

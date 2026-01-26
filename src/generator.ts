@@ -1,18 +1,16 @@
-import RouteRecognizer = require('route-recognizer');
-import handlebars = require('handlebars');
-import fs = require('fs');
-import path = require('path');
-import moment = require('moment');
+import RouteRecognizer from 'route-recognizer';
+import * as fs from 'fs';
+import * as path from 'path';
 import Database from './database';
 import { loadTemplates } from './templates';
 
 export default class Generator {
-  recognizer: RouteRecognizer<string>;
+  recognizer: RouteRecognizer;
   templates: HandlebarsTemplates;
   database: Database;
 
   constructor() {
-    let recognizer = this.recognizer = new RouteRecognizer<string>();
+    let recognizer = this.recognizer = new RouteRecognizer();
 
     this.addRoute('index', '/');
     this.addRoute('archive', '/archive');
@@ -30,7 +28,13 @@ export default class Generator {
   }
 
   serialize(name: string, params: any) {
-    return this.recognizer.generate(name, params);
+    // Extract plain object from params (which may have getters)
+    const plainParams: Record<string, string> = {};
+    if (params.slug) plainParams.slug = params.slug;
+    if (params.year) plainParams.year = params.year;
+    if (params.month) plainParams.month = params.month;
+    if (params.mediaPath) plainParams.mediaPath = params.mediaPath;
+    return this.recognizer.generate(name, plainParams);
   }
 
   generate(path: string): string | Buffer | null {
@@ -50,11 +54,11 @@ export default class Generator {
       case 'post':
         return this.generatePost(result.params['slug'] as string);
       case 'postMedia':
-        return this.generateMedia(result.params) || null;
+        return this.generateMedia(result.params as { [key: string]: string }) || null;
       case 'page':
         return this.generatePage(result.params['slug'] as string);
       case 'pageMedia':
-        return this.generatePageMedia(result.params) || null;
+        return this.generatePageMedia(result.params as { [key: string]: string }) || null;
     }
 
     return null;

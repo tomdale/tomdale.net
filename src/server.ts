@@ -1,7 +1,7 @@
-import express = require('express');
-import moment = require('moment');
-import sass = require('node-sass');
-import path = require('path');
+import express from 'express';
+import moment from 'moment';
+import * as sass from 'sass';
+import * as path from 'path';
 
 import Generator from './generator';
 
@@ -16,9 +16,7 @@ class Server {
     app.use(express.static('public'));
 
     app.get('/style.css', (req, res) => {
-      let compiled = sass.renderSync({
-        file: path.join(__dirname, '../styles/style.scss')
-      })
+      let compiled = sass.compile(path.join(__dirname, '../styles/style.scss'));
       res.set('Content-Type', 'text/css');
       res.send(compiled.css);
     });

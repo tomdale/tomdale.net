@@ -1,8 +1,9 @@
-import fs = require('fs');
-import path = require('path');
-import fm = require('front-matter');
-import moment = require('moment');
-import glob = require('glob');
+import * as fs from 'fs';
+import * as path from 'path';
+import fm from 'front-matter';
+import moment from 'moment';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const glob = require('glob') as { sync: (pattern: string, options?: any) => string[] };
 
 import marked from "../utils/marked";
 import smartypants from '../utils/smartypants';
@@ -11,24 +12,29 @@ import { generator } from '../generator';
 import Media from './media';
 import { loadTemplates } from "../templates";
 
+interface FrontMatterResult {
+  body: string;
+  attributes: Record<string, any>;
+}
+
 interface ContentConstructor<T> {
-  new(filePath: string, metadata: fm.Content): T;
+  new(filePath: string, metadata: FrontMatterResult): T;
 }
 
 abstract class Content {
   abstract type: string;
   inputPath: string;
-  attributes: fm.Attributes;
+  attributes: Record<string, any>;
   templates: HandlebarsTemplates;
   _body: string;
 
   static fromFile<T extends Content>(this: ContentConstructor<T>, filePath: string): T {
     let data = fs.readFileSync(filePath).toString();
-    let metadata = fm(data);
+    let metadata = fm<Record<string, any>>(data);
     return new this(filePath, metadata);
   }
 
-  constructor(inputPath: string, { body, attributes }: fm.Content) {
+  constructor(inputPath: string, { body, attributes }: FrontMatterResult) {
     this.inputPath = inputPath;
     this.attributes = attributes;
     this.templates = loadTemplates();

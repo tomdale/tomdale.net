@@ -1,5 +1,5 @@
-import marked = require('marked');
-import hljs = require('highlight.js');
+import { marked, Renderer } from 'marked';
+import hljs from 'highlight.js';
 
 function highlight(code: string, lang = '') {
   if (!lang) { return code; }
@@ -9,34 +9,36 @@ function highlight(code: string, lang = '') {
     filePath = `<div class="filename">${lang}</div>`;
     lang = lang.slice(lang.lastIndexOf('.') + 1);
   }
-  return filePath + hljs.highlight(lang, code).value;
+  try {
+    return filePath + hljs.highlight(code, { language: lang }).value;
+  } catch {
+    return filePath + code;
+  }
 }
 
-class Renderer extends marked.Renderer {
-  heading(text: string, level: number) {
-    let escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
-
-    return (
-`<h${level}>
+const renderer = new Renderer();
+renderer.heading = function({ text, depth }: { text: string; depth: number }) {
+  const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+  return `<h${depth}>
   <a name="${escapedText}" href="#${escapedText}">
     <span class="header-link"></span>
   ${text}
   </a>
-</h${level}>`
-    );
-  }
-}
+</h${depth}>`;
+};
 
-marked.setOptions({
-  renderer: new Renderer(),
+renderer.code = function({ text, lang }: { text: string; lang?: string }) {
+  const highlighted = highlight(text, lang || '');
+  return `<pre><code class="hljs${lang ? ` language-${lang}` : ''}">${highlighted}</code></pre>`;
+};
+
+marked.use({
+  renderer,
   gfm: true,
-  tables: true,
   breaks: false,
   pedantic: false,
-  sanitize: false,
-  smartLists: true,
-  smartypants: true,
-  highlight
 });
 
-export default marked;
+export default function parse(text: string): string {
+  return marked.parse(text) as string;
+}

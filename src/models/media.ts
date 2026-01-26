@@ -1,6 +1,6 @@
 import Content from './content';
 import Post from './post';
-import path = require('path');
+import * as path from 'path';
 
 export default class Media {
   type = 'media';

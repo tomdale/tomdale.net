@@ -1,7 +1,5 @@
-import fs = require('fs');
-import fm = require('front-matter');
-import moment = require('moment');
-import path = require('path');
+import moment from 'moment';
+import * as path from 'path';
 
 import Content from './content';
 
@@ -12,16 +10,10 @@ let posts: Post[] = [];
 export default class Post extends Content {
   type = 'post';
 
-  inputPath: string;
-  attributes: fm.Attributes;
-  previous: Post | null;
-  next: Post | null;
-
-  static fromFile(filePath: string) {
-    let data = fs.readFileSync(filePath).toString();
-    let metadata = fm(data);
-    return new Post(filePath, metadata);
-  }
+  declare inputPath: string;
+  declare attributes: Record<string, any>;
+  previous: Post | null = null;
+  next: Post | null = null;
 
   render(): string {
     return this.templates.post({

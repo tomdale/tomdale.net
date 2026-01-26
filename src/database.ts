@@ -1,5 +1,6 @@
-import glob = require('glob');
-import _ = require('lodash');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const glob = require('glob') as { sync: (pattern: string) => string[] };
+import _ from 'lodash';
 
 import Post from './models/post';
 import Page from './models/page';
@@ -13,9 +14,9 @@ export default class Database {
   pages: Pages;
 
   constructor() {
-    let posts = this.posts = glob.sync('posts/**/*.md')
-      .map(Post.fromFile)
-      .sort((a, b) => (b.date as any) - (a.date as any));
+    let posts = this.posts = (glob.sync('posts/**/*.md')
+      .map((file: string) => Post.fromFile(file)) as Post[])
+      .sort((a: Post, b: Post) => (b.date as any) - (a.date as any));
 
     for (let i = 0; i < this.visiblePosts.length; i++) {
       posts[i].next = posts[i+1] || null;
@@ -24,9 +25,9 @@ export default class Database {
 
     let pages: Pages = this.pages = {};
 
-    glob.sync('pages/**/*.md')
-      .map(Page.fromFile)
-      .forEach(page => pages[page.slug] = page);
+    (glob.sync('pages/**/*.md')
+      .map((file: string) => Page.fromFile(file)) as Page[])
+      .forEach((page: Page) => pages[page.slug] = page);
   }
 
   get visiblePosts() {
@@ -53,10 +54,10 @@ export default class Database {
 
   byDate() {
     let years = _(this.visiblePosts)
-      .groupBy(post => post.date.year())
+      .groupBy((post: Post) => post.date.year())
       .toPairs()
-      .orderBy(([year]) => year, 'desc')
-      .map(([year, posts]) => ({ year, posts }))
+      .orderBy(([year]: [string, Post[]]) => year, 'desc')
+      .map(([year, posts]: [string, Post[]]) => ({ year, posts }))
       .value();
 
     return years;

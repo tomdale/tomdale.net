@@ -1,7 +1,7 @@
-import path = require('path');
-import Handlebars = require('handlebars');
-import moment = require('moment');
-import fs = require('fs');
+import * as path from 'path';
+import Handlebars from 'handlebars';
+import moment from 'moment';
+import * as fs from 'fs';
 
 let templates: HandlebarsTemplates = {};
 
@@ -27,6 +27,12 @@ export function loadTemplates() {
     return date.format(format);
   });
 
+  // Runtime options to allow accessing class getters/prototype properties
+  const runtimeOptions = {
+    allowProtoPropertiesByDefault: true,
+    allowProtoMethodsByDefault: true
+  };
+
   fs.readdirSync(templatesPath)
     .map(fileName => {
       return {
@@ -39,8 +45,9 @@ export function loadTemplates() {
       if (templateName.charAt(0) === '_') {
         handlebars.registerPartial(templateName.slice(1), file.data);
       } else {
-        let template = handlebars.compile(file.data);
-        templates[templateName] = template;
+        let compiledTemplate = handlebars.compile(file.data);
+        // Wrap template to include runtime options for prototype access
+        templates[templateName] = (context: any) => compiledTemplate(context, runtimeOptions);
       }
     });
 
