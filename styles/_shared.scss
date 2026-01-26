@@ -1,0 +1,23 @@
+$primary-color: #e30000;
+$label-color: #999;
+
+$page-width: 650px;
+
+@mixin futura {
+  font-family: Futura, sans-serif;
+  text-transform: uppercase;
+}
+
+@mixin link-no-underline {
+  border-bottom: 3px solid transparent;
+
+  &:hover {
+    border-bottom: 3px solid #e30000;
+  }
+}
+
+@mixin content-block {
+  max-width: $page-width + 30px;
+  margin: 0 auto;
+  padding: 0 30px;
+}

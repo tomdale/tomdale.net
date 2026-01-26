@@ -1,3 +1,5 @@
+@use "atom-one.css";
+
 code > .filename {
   color: #888;
   font-style: italic;
@@ -6,5 +8,3 @@ code > .filename {
 code > .filename:before {
   content: '// ';
 }
-
-@import "./atom-one";
