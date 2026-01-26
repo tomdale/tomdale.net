@@ -1,6 +1,43 @@
 This is the source code for my website/blog, [tomdale.net](https://www.tomdale.net). It is a handrolled
 static site generator written in TypeScript.
 
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18.0.0 or higher (Node.js 22 is recommended)
+- pnpm 10.x or higher (install with `npm install -g pnpm`)
+- If using nvm, run `nvm use` to automatically use the version specified in `.nvmrc`
+
+### Installation
+
+```bash
+pnpm install
+```
+
+### Development
+
+Start the development server at <http://localhost:4000/>:
+
+```bash
+ppnpm run dev
+```
+
+Changes to files are reflected immediately without restarting the server.
+
+### Available Scripts
+
+- `pnpm run dev` - Start the development server
+- `pnpm run build` - Build a static version of the site to `dist/`
+- `pnpm run build:production` - Build with minification and optimizations
+- `pnpm run clean` - Remove the `dist/` directory
+- `pnpm run lint` - Run ESLint on the source code
+- `pnpm run lint:fix` - Run ESLint and automatically fix issues
+- `pnpm run format` - Format source code with Prettier
+- `pnpm run format:check` - Check if source code is formatted correctly
+- `pnpm run type-check` - Run TypeScript type checking without emitting files
+- `pnpm run deploy` - Build and deploy to Netlify
+
 ## License
 
 The source code for the static site generator is released under the MIT license;
@@ -18,14 +55,6 @@ remains my copyright with all rights reserved.
 * `styles/` - Sass stylesheets. `style.scss` is the entry point; everything else must be manually imported.
 * `templates/` - Handlebars templates. Partials start with an underscore.
 * `dist/` - the built output
-
-## Commands
-
-* `npm start` - starts the development server at <http://localhost:4000/>
-* `npm run build` - builds a static version of the site to `dist/`
-* `npm run build:production` - same as above with minification and other optimizations applied
-* `npm run minify` - runs the minification step against `dist/`
-* `npm run deploy` - manual deploy to Netlify
 
 ## Architecture
 

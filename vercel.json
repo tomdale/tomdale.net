@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "installCommand": "yarn install",
-  "buildCommand": "yarn build:production",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm build:production",
   "outputDirectory": "dist"
 }
