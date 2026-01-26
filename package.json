@@ -37,7 +37,7 @@
     "lodash": "^4.17.21",
     "marked": "^15.0.0",
     "moment": "^2.30.0",
-    "netlify-cli": "^17.0.0",
+    "netlify-cli": "^23.13.5",
     "route-recognizer": "^0.3.0",
     "sass": "^1.80.0",
     "ts-node": "^10.9.0",
